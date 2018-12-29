@@ -1,0 +1,19 @@
+---
+title: 'Главная'
+bodyClass: Index_Page
+outClass: Index_Page
+---
+extends _index
+
+block content
+	main.main(id='home')
+		.test-area
+			button.test-area-btn(
+				data-sound-press-src="click.wav"
+				data-sound-hover-src="bubble-hover.wav"
+				data-sound-hover-volume="0.2") Test 1
+
+			button.test-area-btn(
+				data-sound-press-src="click.wav"
+				data-sound-hover-src="bubble-hover.wav"
+				data-sound-hover-volume="0.2") Test 2

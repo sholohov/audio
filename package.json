@@ -1,0 +1,89 @@
+{
+  "name": "audio",
+  "version": "0.0.1",
+  "scripts": {
+    "ghpages": "git subtree push --prefix build origin gh-pages",
+    "build": "gulp build --production",
+    "start": "gulp",
+    "precommit": "lint-staged",
+    "lint": "eslint --ignore-pattern 'src/js/lib/' --cache --format=node_modules/eslint-formatter-pretty src/js/",
+    "lint-fix": "npm run lint -- --fix"
+  },
+  "lint-staged": {
+    "src/templates/**/*.html": [
+      "htmlhint --config .htmlhintrc"
+    ]
+  },
+  "authors": "",
+  "devDependencies": {
+    "autoprefixer": "9.4.3",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "*",
+    "browser-sync": "*",
+    "critical": "*",
+    "css-mqpacker": "*",
+    "cssnano": "*",
+    "del": "*",
+    "eslint": "*",
+    "eslint-config-airbnb": "*",
+    "eslint-formatter-pretty": "*",
+    "eslint-loader": "*",
+    "eslint-plugin-import": "*",
+    "gulp": "*",
+    "gulp-cached": "*",
+    "gulp-cheerio": "*",
+    "gulp-consolidate": "*",
+    "gulp-front-matter": "*",
+    "gulp-if": "*",
+    "gulp-inject": "*",
+    "gulp-notify": "*",
+    "gulp-plumber": "*",
+    "gulp-postcss": "*",
+    "gulp-prettify": "*",
+    "gulp-pug": "*",
+    "gulp-pugbem": "*",
+    "gulp-rename": "*",
+    "gulp-rev": "*",
+    "gulp-rev-collector": "*",
+    "gulp-sass": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-svgmin": "*",
+    "gulp-svgstore": "*",
+    "gulp-util": "*",
+    "htmlhint": "*",
+    "husky": "*",
+    "inputmask": "*",
+    "jquery-form-validator": "*",
+    "lint-staged": "*",
+    "lodash": "*",
+    "postcss-css-variables": "*",
+    "postcss-csso": "*",
+    "postcss-pxtorem": "*",
+    "require-dir": "*",
+    "require-yaml": "0.0.1",
+    "run-sequence": "*",
+    "uglifyjs-webpack-plugin": "*",
+    "webpack": "*",
+    "webpack-bundle-analyzer": "*"
+  },
+  "dependencies": {
+    "sort-css-media-queries": "^1.4.3",
+    "stylelint-selector-bem-pattern": "^2.0.0"
+  },
+  "description": "",
+  "main": "gulpfile.babel.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sholohov/audio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sholohov/audio/issues"
+  },
+  "homepage": "https://github.com/sholohov/audio#readme"
+}

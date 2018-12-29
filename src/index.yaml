@@ -1,0 +1,6 @@
+ProjectTitle: Start template
+
+PageList:
+- file: home.html
+  name: home
+  ready: 90
