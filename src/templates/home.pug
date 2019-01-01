@@ -11,9 +11,22 @@ block content
 			button.test-area-btn(
 				data-sound-press-src="click.wav"
 				data-sound-hover-src="bubble-hover.wav"
-				data-sound-hover-volume="0.2") Test 1
+				data-sound-hover-volume="1")
+					.test-area-btn__text Test 1
 
 			button.test-area-btn(
 				data-sound-press-src="click.wav"
 				data-sound-hover-src="bubble-hover.wav"
-				data-sound-hover-volume="0.2") Test 2
+				data-sound-hover-volume="1")
+					.test-area-btn__text Test 2
+
+		.user-interface
+			.user-interface__row
+				.user-interface__column
+				.user-interface__column
+
+			.user-interface__row
+				.user-interface__column
+				.user-interface__column
+					.volume-range
+						input.volume-range__element.js-volume-range(type="range" min='0', max='1', step='0.01')

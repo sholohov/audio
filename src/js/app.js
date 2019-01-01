@@ -1,14 +1,19 @@
 import './lib/polyfills';
 import * as Tools from './tools';
-import sound from './core/sound';
-import playAudio from './core/playAudio';
+import SoundEvents from './core/SoundEvents';
+import AudioManager from './core/AudioManager';
+import SoundControl from './core/SoundControl';
 
 // import Cursor from './core/cursor';
-playAudio('Линда - Сделай так.wav', { loop: true, volume: 0.1});
+AudioManager.play('background.wav', { loop: true, volume: 0.1});
+setTimeout(() => {
+	AudioManager.play('background.wav', { loop: true, volume: 0.1});
+}, 1000);
 
 document.addEventListener('DOMContentLoaded', () => {
 	// Sound effects
-	sound();
+	SoundEvents.init();
+	SoundControl.init();
 });
 
 window.addEventListener('load', () => {

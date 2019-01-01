@@ -1,7 +1,36 @@
 .test-area-btn
-	width: 5rem
-	height: 5rem
+	$THIS: &
+
+	position: relative
+	width: 9rem
+	height: 9rem
 	color: white
-	font-size: 1.25rem
 	border-radius: 50%
-	background-color: darkblue
+
+	&__text
+		pointer-events: none
+		display: inline-block
+		position: relative
+		font-size: 1.25rem
+		transition: transform 0.3s
+
+	&:before
+		content: ''
+		display: block
+		position: absolute
+		top: 0.5rem
+		left: 0.5rem
+		right: 0.5rem
+		bottom: 0.5rem
+		border-radius: 50%
+		background-color: darkblue
+		transition: transform 0.3s
+		text-replace: scale(1)
+
+	&:hover
+		#{$THIS}
+			&__text
+				transform: scale(1.1)
+
+		&:before
+			transform: scale(1.1)
