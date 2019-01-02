@@ -73,7 +73,11 @@ export default (function AudioManager() {
 			}, false);
 		}
 		
-		audio.src = `sounds/${src}`;
+		if (/github/.test(location.href)) {
+			audio.src = `/audio/build/sounds/${src}`;
+		} else {
+			audio.src = `/sounds/${src}`;
+		}
 	};
 	
 	return THIS;
