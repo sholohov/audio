@@ -73,7 +73,7 @@ export default (function AudioManager() {
 			}, false);
 		}
 		
-		audio.src = `../sounds/${src}`;
+		audio.src = `sounds/${src}`;
 	};
 	
 	return THIS;
