@@ -7,20 +7,30 @@ function rng(v, a, b) {
 /**
  * Управление Audio API
  */
-
 export default (function AudioManager() {
 	const THIS = {};
 	const list = {};
 
-	function setVolume(audio) {
+	function setVolume(audio, value) {
 		if (!audio.hasOwnProperty('_defaultVolume')) {
 			audio._defaultVolume = audio.volume || 1;
 		}
-		console.log(SoundControl.getRangeValue());
-		let volume = rng(SoundControl.getRangeValue() - (1 - audio._defaultVolume), 0, 1.0);
-		volume = +volume.toFixed(2);
+		let volume = rng(audio._defaultVolume / 100 * value, 0, 1);
+		volume = Math.round(volume * 100) / 100;
 		audio.volume = volume;
 	}
+
+	function addToList(src, audio) {
+		list[src] = audio;
+	}
+
+	THIS.setAllAudioVolume = function(value) {
+		let audioList = list;
+		for (const key in audioList) {
+			const audio = audioList[key];
+			setVolume(audio, value);
+		}
+	};
 
 	/**
 	 * Получить список текущих обектов
@@ -55,15 +65,15 @@ export default (function AudioManager() {
 		
 		if (!audio._isEvent) {
 			audio.addEventListener('loadeddata', () => {
-				setVolume(audio);
+				setVolume(audio, SoundControl.getRangeValue());
 				audio.play();
 				isLoded = true;
-				list[src] = audio;
+				addToList(src, audio);
 				audio._isEvent = true;
 			}, false);
 		}
 		
-		audio.src = `/sounds/${src}`;
+		audio.src = `sounds/${src}`;
 	};
 	
 	return THIS;

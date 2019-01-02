@@ -24,9 +24,9 @@ export default (function SoundControl() {
 	};
 
 	function setRangeValues() {
-		THIS.volumeRangeElem.max = 1;
+		THIS.volumeRangeElem.max = 100;
 		THIS.volumeRangeElem.min = 0;
-		THIS.volumeRangeElem.sep = 0.01;
+		THIS.volumeRangeElem.step = 1;
 	}
 
 	function volumeRange() {
@@ -35,18 +35,7 @@ export default (function SoundControl() {
 			return;
 		}
 		THIS.volumeRangeElem.addEventListener('input', (e) => {
-			let t = e.target;
-			let audioList = AudioManager.getList();
-
-			for (const key in audioList) {
-				const audio = audioList[key];
-				if (!audio.hasOwnProperty('_defaultVolume')) {
-					audio._defaultVolume = audio.volume || 1;
-				}
-				let volume = rng(t.value - (1 - audio._defaultVolume), 0, 1.0);
-				volume = +volume.toFixed(2);
-				audio.volume = volume;
-			}
+			AudioManager.setAllAudioVolume(e.target.value);
 		});
 	};
 
