@@ -65,11 +65,12 @@ export default (function AudioManager() {
 		
 		if (!audio._isEvent) {
 			audio.addEventListener('loadeddata', () => {
+				isLoded = true;
+				audio._isEvent = true;
 				setVolume(audio, SoundControl.getRangeValue());
 				audio.play();
-				isLoded = true;
+				audio.muted = false;
 				addToList(src, audio);
-				audio._isEvent = true;
 			}, false);
 		}
 		
