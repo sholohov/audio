@@ -75,8 +75,10 @@ export default (function AudioManager() {
 		}
 		
 		if (/github/.test(location.href)) {
+			audio.muted = true;
 			audio.src = `/audio/build/sounds/${src}`;
 		} else {
+			audio.muted = true;
 			audio.src = `/sounds/${src}`;
 		}
 	};
