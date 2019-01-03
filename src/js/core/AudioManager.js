@@ -89,6 +89,9 @@ export default (function AudioManager() {
 			console.dir(audio);
 		}, false);
 
+		// In modern versions of Chrome, you can’t have audios autoplay with sound enabled by default.
+		// You need to add the muted property to your HTML5 tag:
+		// muted="muted"
 		if (audio.loop) {
 			audio.muted = true;
 		}
