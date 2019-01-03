@@ -11,6 +11,14 @@ export default (function AudioManager() {
 	const THIS = {};
 	const list = {};
 
+	function getPath() {
+		if (/github/.test(location.href)) {
+			return '/audio/build/sounds/';
+		} else {
+			return '/sounds/';
+		}
+	}
+
 	function setVolume(audio, value) {
 		if (!audio.hasOwnProperty('_defaultVolume')) {
 			audio._defaultVolume = audio.volume || 1;
@@ -38,7 +46,7 @@ export default (function AudioManager() {
 	THIS.getList = function() {
 		return list;
 	};
-	
+
 	/**
 	 * Воспроизвести файл
 	 * @param {string} src
@@ -53,7 +61,7 @@ export default (function AudioManager() {
 			console.warn('Audio(): Can\'t find ' + src);
 			isError = true;
 		}, false);
-		
+
 		if (isError) return;
 
 		if (props) {
@@ -62,26 +70,31 @@ export default (function AudioManager() {
 				audio[key] = element;
 			}
 		}
-		
-		if (!audio._isEvent) {
-			audio.addEventListener('loadeddata', () => {
-				isLoded = true;
-				audio._isEvent = true;
-				setVolume(audio, SoundControl.getRangeValue());
-				audio.play();
+
+		audio.addEventListener('loadeddata', () => {
+			isLoded = true;
+			setVolume(audio, SoundControl.getRangeValue());
+			if (audio.loop) {
 				audio.muted = false;
-				addToList(src, audio);
-			}, false);
-		}
-		
-		if (/github/.test(location.href)) {
+			}
+			audio.preload = true;
+			audio.autoplay = true;
+			let playPromise = audio.play();
+			if (playPromise !== undefined) {
+				playPromise.then(() => {}).catch(error => {
+					console.warn(error);
+				});
+			}
+			addToList(src, audio);
+			console.dir(audio);
+		}, false);
+
+		if (audio.loop) {
 			audio.muted = true;
-			audio.src = `/audio/build/sounds/${src}`;
-		} else {
-			audio.muted = true;
-			audio.src = `/sounds/${src}`;
 		}
+
+		audio.src = getPath() + src;
 	};
-	
+
 	return THIS;
 })();

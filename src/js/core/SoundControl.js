@@ -1,9 +1,5 @@
 import AudioManager from './AudioManager';
 
-function rng(v, a, b) {
-	return Math.min(Math.max(v, a), b);
-}
-
 /**
  * Управление звуком, например громкостью
  */
