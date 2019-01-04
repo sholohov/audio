@@ -9,16 +9,18 @@ block content
 	main.main(id='home')
 		.test-area
 			button.test-area-btn(
-				data-sound-press-src="click.wav"
-				data-sound-hover-src="bubble-hover.wav"
+				data-sound-press-src="click.mp3"
+				data-sound-hover-src="bubble-hover.mp3"
 				data-sound-hover-volume="1")
-					.test-area-btn__text Test 1
+					.test-area-btn__inner
+						.test-area-btn__text Test 1
 
 			button.test-area-btn(
-				data-sound-press-src="click.wav"
-				data-sound-hover-src="bubble-hover.wav"
+				data-sound-press-src="click.mp3"
+				data-sound-hover-src="bubble-hover.mp3"
 				data-sound-hover-volume="1")
-					.test-area-btn__text Test 2
+					.test-area-btn__inner
+						.test-area-btn__text Test 2
 
 		.user-interface
 			.user-interface__row

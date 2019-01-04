@@ -1,27 +1,10 @@
 import './lib/polyfills';
 import * as Tools from './tools';
-import SoundEvents from './core/SoundEvents';
-import AudioManager from './core/AudioManager';
-import SoundControl from './core/SoundControl';
-
-// In modern versions of Chrome, you can’t have audios autoplay with sound enabled by default.
-// You need to add the muted property to your HTML5 tag:
-// muted="muted"
-
-AudioManager.play('background.wav', {
-	loop: true,
-	volume: 0.1,
-	autoplay: true
-});
-
-// setTimeout(() => {
-// 	AudioManager.play('background-2.wav', { loop: true, volume: 0.1});
-// }, 1000);
+import SoundRouter from './core/sound/SoundRouter';
 
 document.addEventListener('DOMContentLoaded', () => {
-	// Sound effects
-	SoundEvents.init();
-	SoundControl.init();
+	SoundRouter.init();
 });
 
-window.addEventListener('load', () => {});
+window.addEventListener('load', () => {
+});
