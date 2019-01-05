@@ -7,13 +7,22 @@ import {
  */
 export default (function SoundEvents() {
 	const THIS = {};
-	const soundList = {};
-	let isMouseDown = false;
+	const _soundList = {};
+	let _hoverElement = null;
+	let _isMouseDown = false;
 
 	THIS.init = function() {
 		THIS.body = document.body;
 		mouseDownListener();
 		hoverListener();
+	};
+
+	THIS.setHoverElement = function(elem) {
+		_hoverElement = elem;
+	};
+
+	THIS.getHoverElement = function() {
+		return _hoverElement;
 	};
 
 	function getPath() {
@@ -26,23 +35,23 @@ export default (function SoundEvents() {
 
 	function handler(prop) {
 		let src = prop.src[0];
-		if (!soundList[src]) {
-			soundList[src] = new Howl(prop);
+		if (!_soundList[src]) {
+			_soundList[src] = new Howl(prop);
 		} else {
-			soundList[src].play();
+			_soundList[src].play();
 		}
 	};
 
 	function mouseDownListener() {
 		THIS.body.addEventListener('mousedown', (e) => {
-			isMouseDown = true;
+			_isMouseDown = true;
 			setTimeout(() => {
-				isMouseDown = false;
+				_isMouseDown = false;
 			}, 0);
 			let t = e.target;
 			while (t && t !== THIS.body) {
 				if (t && t.matches('[data-sound-press-src]')) {
-					THIS.currentElement = t;
+					_hoverElement = t;
 					let src = t.dataset.soundPressSrc || '';
 					let volume = t.dataset.soundPressVolume || 1;
 					handler({
@@ -59,11 +68,11 @@ export default (function SoundEvents() {
 	
 	function hoverListener() {
 		THIS.body.addEventListener('mouseover', (e) => {
-			if (THIS.currentElement) return;
+			if (_hoverElement) return;
 			let t = e.target;
 			while (t && t !== THIS.body) {
 				if (t && t.matches('[data-sound-hover-src]')) {
-					THIS.currentElement = t;
+					_hoverElement = t;
 					let src = t.dataset.soundHoverSrc || '';
 					let volume = t.dataset.soundHoverVolume || 1;
 					handler({
@@ -78,13 +87,13 @@ export default (function SoundEvents() {
 		});
 		
 		THIS.body.addEventListener('mouseout', (e) => {
-			if (!THIS.currentElement || isMouseDown) return;
+			if (!_hoverElement || _isMouseDown) return;
 			let rt = e.relatedTarget;
 			while (rt && rt !== THIS.body) {
-				if (rt === THIS.currentElement) return;
+				if (rt === _hoverElement) return;
 				if (rt) rt = rt.parentNode;
 			}
-			THIS.currentElement = null;
+			_hoverElement = null;
 		});
 	};
 	

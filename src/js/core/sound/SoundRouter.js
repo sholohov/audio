@@ -1,5 +1,5 @@
 import {
-	Howl
+	Howl, Howler
 } from '../../lib/howler';
 import SoundEvents from './SoundEvents';
 import SoundControl from './SoundControl';
@@ -8,8 +8,8 @@ export default (function SoundRouter() {
 	const THIS = {};
 	
 	THIS.init = function() {
-		SoundEvents.init();
 		SoundControl.init();
+		SoundEvents.init();
 		background();
 	};
 

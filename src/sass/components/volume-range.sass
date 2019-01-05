@@ -1,11 +1,13 @@
 .volume-range
+	display: flex
+	align-self: auto
 	position: relative
 	pointer-events: auto
-	height: 0
-	width: 1rem
-	margin: 1rem
+	margin: 0.5rem 0
 
 	&__element
-		height: 1rem
-		transform: rotate(-90deg)
-		transform-origin: 0% 0%
+		height: 8rem
+		width: 2.5rem
+		writing-mode: bt-lr // IE
+		-webkit-appearance: slider-vertical // WebKit
+		
